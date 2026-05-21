@@ -1,0 +1,788 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Is Het Tijd? — Zelfstandigheidsscore voor uw ouder</title>
+<meta name="description" content="Doe de gratis test van 2 minuten en ontdek of uw ouder nog veilig zelfstandig kan wonen. Direct een persoonlijke uitslag met advies.">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --primary: #3a7b8e;
+    --primary-dark: #2d6373;
+    --accent: #e8a87c;
+    --cream: #faf6f1;
+    --warm-beige: #f0e6d6;
+    --text: #2c3e50;
+    --text-muted: #6b7c8a;
+    --green: #7cb342;
+    --yellow: #f9a825;
+    --red: #e57373;
+    --shadow: 0 10px 40px rgba(58, 123, 142, 0.12);
+    --border: #e5d9c5;
+  }
+
+  html, body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+    background: linear-gradient(135deg, #faf6f1 0%, #f0e6d6 100%);
+    color: var(--text);
+    line-height: 1.6;
+    min-height: 100vh;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .container {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 32px 20px 80px;
+  }
+
+  .brand {
+    text-align: center;
+    margin-bottom: 24px;
+    color: var(--primary);
+    font-weight: 600;
+    font-size: 14px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+  }
+
+  .card {
+    background: white;
+    border-radius: 20px;
+    padding: 48px 40px;
+    box-shadow: var(--shadow);
+    border: 1px solid var(--border);
+  }
+
+  @media (max-width: 600px) {
+    .card { padding: 32px 24px; }
+  }
+
+  h1 {
+    font-size: 32px;
+    line-height: 1.25;
+    margin-bottom: 16px;
+    color: var(--text);
+    font-weight: 700;
+  }
+
+  @media (max-width: 600px) {
+    h1 { font-size: 26px; }
+  }
+
+  h2 {
+    font-size: 22px;
+    margin-bottom: 20px;
+    color: var(--text);
+  }
+
+  .lead {
+    font-size: 18px;
+    color: var(--text-muted);
+    margin-bottom: 32px;
+  }
+
+  .badges {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+    margin-bottom: 32px;
+  }
+
+  .badge {
+    background: var(--cream);
+    padding: 8px 16px;
+    border-radius: 100px;
+    font-size: 14px;
+    color: var(--primary-dark);
+    font-weight: 500;
+    border: 1px solid var(--border);
+  }
+
+  .btn {
+    display: inline-block;
+    background: var(--primary);
+    color: white;
+    border: none;
+    padding: 18px 36px;
+    font-size: 17px;
+    font-weight: 600;
+    border-radius: 100px;
+    cursor: pointer;
+    transition: all 0.2s;
+    text-decoration: none;
+    font-family: inherit;
+    width: 100%;
+    max-width: 360px;
+  }
+
+  .btn:hover {
+    background: var(--primary-dark);
+    transform: translateY(-1px);
+    box-shadow: 0 8px 24px rgba(58, 123, 142, 0.25);
+  }
+
+  .btn-secondary {
+    background: transparent;
+    color: var(--primary);
+    border: 2px solid var(--primary);
+  }
+
+  .btn-secondary:hover {
+    background: var(--primary);
+    color: white;
+  }
+
+  .btn-accent {
+    background: var(--accent);
+    color: white;
+  }
+
+  .btn-accent:hover {
+    background: #d89569;
+  }
+
+  .progress-bar {
+    background: var(--warm-beige);
+    border-radius: 100px;
+    height: 8px;
+    margin-bottom: 32px;
+    overflow: hidden;
+  }
+
+  .progress-fill {
+    background: var(--primary);
+    height: 100%;
+    border-radius: 100px;
+    transition: width 0.4s ease;
+    width: 0%;
+  }
+
+  .progress-text {
+    font-size: 14px;
+    color: var(--text-muted);
+    text-align: center;
+    margin-bottom: 16px;
+    font-weight: 500;
+  }
+
+  .question-category {
+    color: var(--primary);
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+
+  .question-text {
+    font-size: 22px;
+    margin-bottom: 32px;
+    color: var(--text);
+    line-height: 1.4;
+    font-weight: 600;
+  }
+
+  .options {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 32px;
+  }
+
+  .option {
+    background: var(--cream);
+    border: 2px solid var(--border);
+    padding: 18px 24px;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.15s;
+    font-size: 16px;
+    color: var(--text);
+    text-align: left;
+    width: 100%;
+    font-family: inherit;
+  }
+
+  .option:hover {
+    border-color: var(--primary);
+    background: white;
+    transform: translateX(4px);
+  }
+
+  .option.selected {
+    border-color: var(--primary);
+    background: white;
+    box-shadow: 0 4px 12px rgba(58, 123, 142, 0.15);
+  }
+
+  .nav-buttons {
+    display: flex;
+    gap: 12px;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .btn-back {
+    background: transparent;
+    color: var(--text-muted);
+    border: none;
+    padding: 12px 20px;
+    cursor: pointer;
+    font-size: 15px;
+    font-family: inherit;
+    border-radius: 8px;
+  }
+
+  .btn-back:hover {
+    color: var(--primary);
+  }
+
+  .btn-back:disabled {
+    visibility: hidden;
+  }
+
+  .result-icon {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    margin: 0 auto 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 60px;
+  }
+
+  .result-green .result-icon { background: #e8f5e9; color: var(--green); }
+  .result-yellow .result-icon { background: #fff8e1; color: var(--yellow); }
+  .result-red .result-icon { background: #ffebee; color: var(--red); }
+
+  .result-screen { text-align: center; }
+
+  .result-label {
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+
+  .result-green .result-label { color: var(--green); }
+  .result-yellow .result-label { color: var(--yellow); }
+  .result-red .result-label { color: var(--red); }
+
+  .result-title {
+    font-size: 32px;
+    margin-bottom: 16px;
+    color: var(--text);
+    line-height: 1.25;
+  }
+
+  .result-score {
+    font-size: 18px;
+    color: var(--text-muted);
+    margin-bottom: 24px;
+  }
+
+  .result-summary {
+    background: var(--cream);
+    padding: 24px;
+    border-radius: 12px;
+    text-align: left;
+    margin-bottom: 32px;
+    border-left: 4px solid var(--primary);
+  }
+
+  .result-summary h3 {
+    color: var(--primary-dark);
+    margin-bottom: 12px;
+    font-size: 18px;
+  }
+
+  .result-summary p {
+    color: var(--text);
+    line-height: 1.7;
+  }
+
+  .email-capture {
+    background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+    color: white;
+    padding: 36px 32px;
+    border-radius: 16px;
+    margin-top: 24px;
+    text-align: left;
+  }
+
+  .email-capture h3 {
+    font-size: 22px;
+    margin-bottom: 12px;
+    color: white;
+  }
+
+  .email-capture p {
+    margin-bottom: 20px;
+    opacity: 0.95;
+    line-height: 1.6;
+  }
+
+  .email-form {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .email-input {
+    padding: 16px 20px;
+    border-radius: 100px;
+    border: none;
+    font-size: 16px;
+    font-family: inherit;
+    outline: none;
+  }
+
+  .email-input:focus {
+    box-shadow: 0 0 0 3px rgba(232, 168, 124, 0.5);
+  }
+
+  .email-form button {
+    background: var(--accent);
+    color: white;
+    border: none;
+    padding: 16px;
+    border-radius: 100px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    font-family: inherit;
+    transition: all 0.2s;
+  }
+
+  .email-form button:hover {
+    background: #d89569;
+  }
+
+  .small {
+    font-size: 13px;
+    opacity: 0.85;
+    margin-top: 12px;
+  }
+
+  .cta-section {
+    background: var(--warm-beige);
+    padding: 32px;
+    border-radius: 16px;
+    margin-top: 24px;
+    text-align: center;
+  }
+
+  .cta-section h3 {
+    font-size: 22px;
+    margin-bottom: 12px;
+    color: var(--text);
+  }
+
+  .cta-section p {
+    color: var(--text-muted);
+    margin-bottom: 24px;
+  }
+
+  .hidden { display: none; }
+
+  .checklist {
+    list-style: none;
+    margin-bottom: 24px;
+  }
+
+  .checklist li {
+    padding: 8px 0;
+    padding-left: 32px;
+    position: relative;
+    color: var(--text);
+  }
+
+  .checklist li:before {
+    content: "✓";
+    position: absolute;
+    left: 0;
+    top: 8px;
+    color: var(--green);
+    font-weight: 700;
+    font-size: 18px;
+  }
+
+  .footer-note {
+    text-align: center;
+    margin-top: 32px;
+    color: var(--text-muted);
+    font-size: 13px;
+  }
+
+  .success-message {
+    background: #e8f5e9;
+    border: 1px solid var(--green);
+    color: #2e7d32;
+    padding: 16px;
+    border-radius: 12px;
+    text-align: center;
+    margin-top: 16px;
+  }
+</style>
+</head>
+<body>
+<div class="container">
+  <div class="brand">Zorgkompas voor Familie</div>
+
+  <!-- INTRO SCREEN -->
+  <div class="card" id="intro-screen">
+    <h1>Is het tijd om u zorgen te maken?</h1>
+    <p class="lead">Doe deze gratis test van 2 minuten en ontdek in 12 vragen of uw vader of moeder nog veilig zelfstandig kan wonen — en wat de eerste slimme stap is.</p>
+
+    <div class="badges">
+      <div class="badge">⏱ 2 minuten</div>
+      <div class="badge">🔒 Anoniem</div>
+      <div class="badge">✓ Direct uitslag</div>
+    </div>
+
+    <h2>Wat u krijgt:</h2>
+    <ul class="checklist">
+      <li>Een persoonlijke stoplicht-score voor uw ouder</li>
+      <li>Inzicht in waar de grootste risico's liggen</li>
+      <li>Concreet advies over de volgende stap</li>
+      <li>Optioneel: een uitgebreid rapport per email</li>
+    </ul>
+
+    <button class="btn" onclick="startQuiz()">Start de test →</button>
+
+    <p class="footer-note">Deze test is ontwikkeld op basis van geriatrische beoordelingscriteria. De uitslag is een indicatie en geen medisch advies.</p>
+  </div>
+
+  <!-- QUIZ SCREEN -->
+  <div class="card hidden" id="quiz-screen">
+    <div class="progress-text" id="progress-text">Vraag 1 van 12</div>
+    <div class="progress-bar"><div class="progress-fill" id="progress-fill"></div></div>
+
+    <div class="question-category" id="question-category"></div>
+    <div class="question-text" id="question-text"></div>
+
+    <div class="options" id="options"></div>
+
+    <div class="nav-buttons">
+      <button class="btn-back" id="back-btn" onclick="prevQuestion()">← Terug</button>
+      <span style="color: var(--text-muted); font-size: 14px;" id="auto-hint">Tik op een antwoord om door te gaan</span>
+    </div>
+  </div>
+
+  <!-- RESULT SCREEN -->
+  <div class="card hidden" id="result-screen">
+    <div class="result-screen">
+      <div class="result-icon" id="result-icon"></div>
+      <div class="result-label" id="result-label"></div>
+      <h1 class="result-title" id="result-title"></h1>
+      <p class="result-score" id="result-score"></p>
+
+      <div class="result-summary">
+        <h3 id="summary-title"></h3>
+        <p id="summary-text"></p>
+      </div>
+
+      <div class="email-capture">
+        <h3>📧 Wilt u het volledige rapport per email?</h3>
+        <p>Krijg gratis een uitgebreid rapport (PDF) met: een gedetailleerde analyse per categorie, een 7-stappen actieplan voor uw situatie, en een lijst van regelingen en subsidies waar uw gezin recht op heeft.</p>
+        <form class="email-form" id="lead-form"
+              action="https://PLAK-HIER-JE-BREVO-URL.sibforms.com/serve/JOUW-FORM-ID"
+              method="POST" target="brevo_iframe" onsubmit="submitEmail(event)">
+          <input type="text" class="email-input" placeholder="Uw voornaam" required id="user-name" name="FIRSTNAME">
+          <input type="email" class="email-input" placeholder="Uw email adres" required id="user-email" name="EMAIL">
+          <!-- Optioneel: stuurt de score mee. Maak hiervoor in Brevo een attribuut 'SCORE' aan, of verwijder deze regel. -->
+          <input type="hidden" name="SCORE" id="hidden-score" value="">
+          <input type="hidden" name="locale" value="nl">
+          <!-- Anti-spam honeypot (moet leeg blijven) -->
+          <input type="text" name="email_address_check" value="" tabindex="-1" autocomplete="off" style="position:absolute;left:-9999px">
+          <button type="submit">Stuur mij het rapport →</button>
+        </form>
+        <p class="small">Geen spam, ooit. U kunt zich altijd uitschrijven met één klik.</p>
+        <div class="success-message hidden" id="success-msg">
+          ✓ Bedankt! Het rapport zit binnen 2 minuten in uw inbox.
+        </div>
+      </div>
+
+      <div class="cta-section">
+        <h3>Wilt u dit niet alleen uitzoeken?</h3>
+        <p>In een 30-minuten Zorg-Transitie gesprek bekijken we samen uw exacte situatie en maken we een concreet plan. Geen verkooppraatje — gewoon helderheid.</p>
+        <a href="#" class="btn btn-accent">Plan een gratis kennismaking →</a>
+      </div>
+    </div>
+
+    <p class="footer-note">
+      <a href="#" onclick="restart(); return false;" style="color: var(--primary);">↻ Doe de test opnieuw</a>
+    </p>
+  </div>
+</div>
+
+<!-- Verborgen frame: vangt Brevo's antwoord op zodat de pagina niet herlaadt -->
+<iframe name="brevo_iframe" title="brevo" style="display:none"></iframe>
+
+<script>
+  const questions = [
+    {
+      category: "Mobiliteit",
+      text: "Kan uw ouder zonder hulp veilig de trap op en af?",
+      options: [
+        { text: "Ja, zonder problemen", score: 0 },
+        { text: "Ja, maar voorzichtig of langzamer", score: 1 },
+        { text: "Alleen met hulp of een traplift", score: 2 },
+        { text: "Nee, dit lukt niet meer", score: 3 }
+      ]
+    },
+    {
+      category: "Valrisico",
+      text: "Is uw ouder in de afgelopen 12 maanden gevallen?",
+      options: [
+        { text: "Nee, niet gevallen", score: 0 },
+        { text: "Eén keer gestruikeld, zonder gevolgen", score: 1 },
+        { text: "2 tot 3 keer gevallen", score: 2 },
+        { text: "Vaker, of met letsel/ziekenhuisbezoek", score: 3 }
+      ]
+    },
+    {
+      category: "Geheugen",
+      text: "Vergeet uw ouder vaak recente gebeurtenissen of gesprekken?",
+      options: [
+        { text: "Zelden — normaal voor de leeftijd", score: 0 },
+        { text: "Soms, maar onthoudt het meeste", score: 1 },
+        { text: "Regelmatig, herhaalt vragen", score: 2 },
+        { text: "Vaak, weet recente dingen niet meer", score: 3 }
+      ]
+    },
+    {
+      category: "Oriëntatie",
+      text: "Heeft uw ouder weleens moeite met de juiste datum, plaats, of de weg terugvinden?",
+      options: [
+        { text: "Nee, altijd helder", score: 0 },
+        { text: "Soms even kwijt, vindt het zelf terug", score: 1 },
+        { text: "Regelmatig verward over datum of plaats", score: 2 },
+        { text: "Vaak gedesoriënteerd, zelfs thuis", score: 3 }
+      ]
+    },
+    {
+      category: "Medicatie",
+      text: "Neemt uw ouder zijn/haar medicijnen zelfstandig en op tijd in?",
+      options: [
+        { text: "Ja, helemaal zelfstandig", score: 0 },
+        { text: "Meestal wel, soms een vergissing", score: 1 },
+        { text: "Heeft hulp nodig (medicatiedoos, herinnering)", score: 2 },
+        { text: "Lukt niet meer zelfstandig", score: 3 }
+      ]
+    },
+    {
+      category: "Persoonlijke verzorging",
+      text: "Verzorgt uw ouder zichzelf nog goed (douchen, kleden, tanden)?",
+      options: [
+        { text: "Volledig zelfstandig en verzorgd", score: 0 },
+        { text: "Vergeet soms iets, ziet er meestal goed uit", score: 1 },
+        { text: "Heeft hulp nodig of stelt verzorging uit", score: 2 },
+        { text: "Verwaarloost de verzorging duidelijk", score: 3 }
+      ]
+    },
+    {
+      category: "Voeding",
+      text: "Bereidt uw ouder zelf nog warme, gevarieerde maaltijden?",
+      options: [
+        { text: "Kookt zelf, eet gevarieerd", score: 0 },
+        { text: "Bereidt eenvoudige maaltijden, soms kant-en-klaar", score: 1 },
+        { text: "Vooral kant-en-klaar of slaat maaltijden over", score: 2 },
+        { text: "Eet onregelmatig of vergeet te eten", score: 3 }
+      ]
+    },
+    {
+      category: "Financiën",
+      text: "Beheert uw ouder de eigen financiën nog correct (rekeningen, post)?",
+      options: [
+        { text: "Volledig zelfstandig, geen fouten", score: 0 },
+        { text: "Wat hulp nodig, betaalt nog op tijd", score: 1 },
+        { text: "Rekeningen blijven liggen of worden vergeten", score: 2 },
+        { text: "Geen overzicht meer, risico op fraude of schulden", score: 3 }
+      ]
+    },
+    {
+      category: "Sociaal leven",
+      text: "Heeft uw ouder regelmatig contact met anderen buiten uw gezin?",
+      options: [
+        { text: "Actief sociaal leven", score: 0 },
+        { text: "Wat contacten, vindt het zelf voldoende", score: 1 },
+        { text: "Weinig contact, raakt geïsoleerd", score: 2 },
+        { text: "Volledig geïsoleerd, ziet bijna niemand", score: 3 }
+      ]
+    },
+    {
+      category: "Veiligheid",
+      text: "Maakt uw ouder weleens onveilige fouten (fornuis aan, deur open, dwalen)?",
+      options: [
+        { text: "Nooit, alles wordt goed afgesloten", score: 0 },
+        { text: "Heel zelden, merkt het zelf", score: 1 },
+        { text: "Regelmatig, anderen moeten erop letten", score: 2 },
+        { text: "Vaak, er ontstaan gevaarlijke situaties", score: 3 }
+      ]
+    },
+    {
+      category: "Gezondheid",
+      text: "Eet en drinkt uw ouder voldoende en gezond?",
+      options: [
+        { text: "Ja, regelmatig en gevarieerd", score: 0 },
+        { text: "Meestal wel, slaat soms iets over", score: 1 },
+        { text: "Eet eenzijdig of te weinig", score: 2 },
+        { text: "Opvallend slecht eten, gewichtsverlies", score: 3 }
+      ]
+    },
+    {
+      category: "Uw onderbuikgevoel",
+      text: "Hoe vaak maakt u zich zorgen om de veiligheid van uw ouder?",
+      options: [
+        { text: "Zelden of nooit", score: 0 },
+        { text: "Af en toe, maar niet acuut", score: 1 },
+        { text: "Wekelijks, vaak ongerust", score: 2 },
+        { text: "Dagelijks, slecht slapen door zorgen", score: 3 }
+      ]
+    }
+  ];
+
+  let currentQuestion = 0;
+  let answers = new Array(questions.length).fill(null);
+
+  function startQuiz() {
+    document.getElementById('intro-screen').classList.add('hidden');
+    document.getElementById('quiz-screen').classList.remove('hidden');
+    renderQuestion();
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  function renderQuestion() {
+    const q = questions[currentQuestion];
+    document.getElementById('question-category').textContent = q.category;
+    document.getElementById('question-text').textContent = q.text;
+
+    const progressPct = ((currentQuestion) / questions.length) * 100;
+    document.getElementById('progress-fill').style.width = progressPct + '%';
+    document.getElementById('progress-text').textContent = `Vraag ${currentQuestion + 1} van ${questions.length}`;
+
+    const optionsEl = document.getElementById('options');
+    optionsEl.innerHTML = '';
+    q.options.forEach((opt, idx) => {
+      const btn = document.createElement('button');
+      btn.className = 'option';
+      btn.textContent = opt.text;
+      if (answers[currentQuestion] === idx) btn.classList.add('selected');
+      btn.onclick = () => selectAnswer(idx);
+      optionsEl.appendChild(btn);
+    });
+
+    document.getElementById('back-btn').disabled = currentQuestion === 0;
+  }
+
+  function selectAnswer(idx) {
+    answers[currentQuestion] = idx;
+    // visual feedback
+    document.querySelectorAll('.option').forEach((el, i) => {
+      el.classList.toggle('selected', i === idx);
+    });
+    // auto-advance after small delay
+    setTimeout(() => {
+      if (currentQuestion < questions.length - 1) {
+        currentQuestion++;
+        renderQuestion();
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      } else {
+        showResult();
+      }
+    }, 280);
+  }
+
+  function prevQuestion() {
+    if (currentQuestion > 0) {
+      currentQuestion--;
+      renderQuestion();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  }
+
+  function showResult() {
+    document.getElementById('progress-fill').style.width = '100%';
+    const score = answers.reduce((sum, idx, qi) => sum + questions[qi].options[idx].score, 0);
+
+    const resultScreen = document.getElementById('result-screen');
+    const iconEl = document.getElementById('result-icon');
+
+    let level, label, title, summaryTitle, summaryText, iconChar;
+
+    if (score <= 12) {
+      level = 'green';
+      label = 'GROEN — Nog zelfstandig';
+      title = 'Goed nieuws: uw ouder doet het goed';
+      iconChar = '🟢';
+      summaryTitle = 'Wat dit betekent';
+      summaryText = `Uw ouder is op dit moment nog goed zelfstandig (score: ${score} van 36). Er zijn geen acute zorgen. Dit is hét moment om vooruit te plannen — niet uit paniek, maar uit liefde. De gezinnen die hun ouders nooit overhaast hoeven te verhuizen, zijn de gezinnen die deze gesprekken voerden toen het nog niet hoefde. Gebruik deze tijd om afspraken te maken over wensen, financiën en woonvorm.`;
+    } else if (score <= 23) {
+      level = 'yellow';
+      label = 'GEEL — Tijd om te plannen';
+      title = 'Er zijn signalen die aandacht vragen';
+      iconChar = '🟡';
+      summaryTitle = 'Wat dit betekent';
+      summaryText = `Uw zorgen zijn niet ongegrond (score: ${score} van 36). Op meerdere gebieden zijn signalen van afnemende zelfstandigheid. Dit is niet acuut, maar wel het moment om te handelen voordat het wél acuut wordt. Veel families wachten te lang en moeten dan in crisismodus beslissingen nemen die ze niet wilden. U zit nu in de gouden zone: nog tijd om rustig, samen, en met de juiste mensen een plan te maken.`;
+    } else {
+      level = 'red';
+      label = 'ROOD — Actie nodig';
+      title = 'Uw ouder heeft nu hulp nodig';
+      iconChar = '🔴';
+      summaryTitle = 'Wat dit betekent';
+      summaryText = `De situatie vraagt nu actie (score: ${score} van 36). Op meerdere kerngebieden — veiligheid, gezondheid, of zelfredzaamheid — is uw ouder kwetsbaar. Wachten betekent risico op een val, een ziekenhuisopname, of een crisis waarna er geen tijd meer is om weloverwogen te kiezen. De volgende stap is niet "alles op een rij zetten" — die fase is voorbij. De volgende stap is: deze week iemand spreken die u helpt te beslissen wat er nu moet gebeuren.`;
+    }
+
+    resultScreen.className = 'result-screen result-' + level;
+    iconEl.textContent = iconChar;
+    document.getElementById('result-label').textContent = label;
+    document.getElementById('result-title').textContent = title;
+    document.getElementById('result-score').textContent = `Uw score: ${score} van 36 punten`;
+    document.getElementById('summary-title').textContent = summaryTitle;
+    document.getElementById('summary-text').textContent = summaryText;
+
+    document.getElementById('quiz-screen').classList.add('hidden');
+    document.getElementById('result-screen').classList.remove('hidden');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  function submitEmail(e) {
+    const form = e.target;
+    const score = answers.reduce((s, idx, qi) => s + questions[qi].options[idx].score, 0);
+    document.getElementById('hidden-score').value = score;
+
+    // Testmodus: zolang de Brevo-URL nog niet is ingevuld, niet echt versturen.
+    if (form.action.indexOf('PLAK-HIER') !== -1) {
+      e.preventDefault();
+      console.log('TESTMODUS — vul eerst je Brevo-URL in bij action="...". Gegevens:', {
+        name: document.getElementById('user-name').value,
+        email: document.getElementById('user-email').value,
+        score: score
+      });
+    }
+    // Anders verstuurt het formulier zichzelf naar Brevo via het verborgen frame.
+
+    document.getElementById('success-msg').classList.remove('hidden');
+    form.querySelector('button').textContent = '✓ Verstuurd';
+    form.querySelector('button').disabled = true;
+  }
+
+  function restart() {
+    currentQuestion = 0;
+    answers = new Array(questions.length).fill(null);
+    document.getElementById('result-screen').classList.add('hidden');
+    document.getElementById('intro-screen').classList.remove('hidden');
+    document.getElementById('success-msg').classList.add('hidden');
+    document.getElementById('user-name').value = '';
+    document.getElementById('user-email').value = '';
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+</script>
+</body>
+</html>
