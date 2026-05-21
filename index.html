@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Is Het Tijd? — Zelfstandigheidsscore voor uw ouder</title>
-<meta name="description" content="Doe de gratis test van 2 minuten en ontdek of uw ouder nog veilig zelfstandig kan wonen. Direct een persoonlijke uitslag met advies.">
+<meta name="description" content="Doe de gratis test van 2 minuten en ontdek of uw ouder nog veilig zelfstandig kan wonen. Direct een persoonlijke uitslag met een overzicht per gebied.">
 <style>
   * { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -122,26 +122,6 @@
     background: var(--primary-dark);
     transform: translateY(-1px);
     box-shadow: 0 8px 24px rgba(58, 123, 142, 0.25);
-  }
-
-  .btn-secondary {
-    background: transparent;
-    color: var(--primary);
-    border: 2px solid var(--primary);
-  }
-
-  .btn-secondary:hover {
-    background: var(--primary);
-    color: white;
-  }
-
-  .btn-accent {
-    background: var(--accent);
-    color: white;
-  }
-
-  .btn-accent:hover {
-    background: #d89569;
   }
 
   .progress-bar {
@@ -306,87 +286,70 @@
     line-height: 1.7;
   }
 
-  .email-capture {
-    background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
-    color: white;
-    padding: 36px 32px;
-    border-radius: 16px;
-    margin-top: 24px;
+  /* Overzicht per gebied */
+  .breakdown {
     text-align: left;
+    margin-bottom: 16px;
   }
 
-  .email-capture h3 {
-    font-size: 22px;
-    margin-bottom: 12px;
-    color: white;
+  .breakdown h3 {
+    font-size: 18px;
+    color: var(--primary-dark);
+    margin-bottom: 8px;
   }
 
-  .email-capture p {
-    margin-bottom: 20px;
-    opacity: 0.95;
-    line-height: 1.6;
-  }
-
-  .email-form {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-  }
-
-  .email-input {
-    padding: 16px 20px;
-    border-radius: 100px;
-    border: none;
-    font-size: 16px;
-    font-family: inherit;
-    outline: none;
-  }
-
-  .email-input:focus {
-    box-shadow: 0 0 0 3px rgba(232, 168, 124, 0.5);
-  }
-
-  .email-form button {
-    background: var(--accent);
-    color: white;
-    border: none;
-    padding: 16px;
-    border-radius: 100px;
-    font-size: 16px;
-    font-weight: 600;
-    cursor: pointer;
-    font-family: inherit;
-    transition: all 0.2s;
-  }
-
-  .email-form button:hover {
-    background: #d89569;
-  }
-
-  .small {
-    font-size: 13px;
-    opacity: 0.85;
-    margin-top: 12px;
-  }
-
-  .cta-section {
-    background: var(--warm-beige);
-    padding: 32px;
-    border-radius: 16px;
-    margin-top: 24px;
-    text-align: center;
-  }
-
-  .cta-section h3 {
-    font-size: 22px;
-    margin-bottom: 12px;
-    color: var(--text);
-  }
-
-  .cta-section p {
+  .breakdown .intro {
+    font-size: 14px;
     color: var(--text-muted);
-    margin-bottom: 24px;
+    margin-bottom: 18px;
   }
+
+  .breakdown-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 13px 18px;
+    border-radius: 10px;
+    margin-bottom: 8px;
+    background: var(--cream);
+    border: 1px solid var(--border);
+  }
+
+  .breakdown-cat {
+    font-weight: 600;
+    color: var(--text);
+    font-size: 15px;
+  }
+
+  .breakdown-pill {
+    font-size: 13px;
+    font-weight: 700;
+    padding: 5px 14px;
+    border-radius: 100px;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  .pill-good  { background: #e8f5e9; color: #2e7d32; }
+  .pill-watch { background: #fff8e1; color: #a9740a; }
+  .pill-risk  { background: #ffebee; color: #c62828; }
+
+  .legend {
+    display: flex;
+    gap: 18px;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 18px;
+    font-size: 13px;
+    color: var(--text-muted);
+  }
+
+  .legend span { display: inline-flex; align-items: center; gap: 6px; }
+  .dot { width: 11px; height: 11px; border-radius: 50%; display: inline-block; }
+  .dot-good { background: var(--green); }
+  .dot-watch { background: var(--yellow); }
+  .dot-risk { background: var(--red); }
 
   .hidden { display: none; }
 
@@ -419,15 +382,7 @@
     font-size: 13px;
   }
 
-  .success-message {
-    background: #e8f5e9;
-    border: 1px solid var(--green);
-    color: #2e7d32;
-    padding: 16px;
-    border-radius: 12px;
-    text-align: center;
-    margin-top: 16px;
-  }
+  .restart-wrap { text-align: center; margin-top: 8px; }
 </style>
 </head>
 <body>
@@ -448,9 +403,8 @@
     <h2>Wat u krijgt:</h2>
     <ul class="checklist">
       <li>Een persoonlijke stoplicht-score voor uw ouder</li>
-      <li>Inzicht in waar de grootste risico's liggen</li>
-      <li>Concreet advies over de volgende stap</li>
-      <li>Optioneel: een uitgebreid rapport per email</li>
+      <li>Een overzicht per gebied: waar het goed gaat en waar de aandachtspunten liggen</li>
+      <li>Concreet advies over de eerste volgende stap</li>
     </ul>
 
     <button class="btn" onclick="startQuiz()">Start de test →</button>
@@ -487,42 +441,25 @@
         <p id="summary-text"></p>
       </div>
 
-      <div class="email-capture">
-        <h3>📧 Wilt u het volledige rapport per email?</h3>
-        <p>Krijg gratis een uitgebreid rapport (PDF) met: een gedetailleerde analyse per categorie, een 7-stappen actieplan voor uw situatie, en een lijst van regelingen en subsidies waar uw gezin recht op heeft.</p>
-        <form class="email-form" id="lead-form"
-              action="https://PLAK-HIER-JE-BREVO-URL.sibforms.com/serve/JOUW-FORM-ID"
-              method="POST" target="brevo_iframe" onsubmit="submitEmail(event)">
-          <input type="text" class="email-input" placeholder="Uw voornaam" required id="user-name" name="FIRSTNAME">
-          <input type="email" class="email-input" placeholder="Uw email adres" required id="user-email" name="EMAIL">
-          <!-- Optioneel: stuurt de score mee. Maak hiervoor in Brevo een attribuut 'SCORE' aan, of verwijder deze regel. -->
-          <input type="hidden" name="SCORE" id="hidden-score" value="">
-          <input type="hidden" name="locale" value="nl">
-          <!-- Anti-spam honeypot (moet leeg blijven) -->
-          <input type="text" name="email_address_check" value="" tabindex="-1" autocomplete="off" style="position:absolute;left:-9999px">
-          <button type="submit">Stuur mij het rapport →</button>
-        </form>
-        <p class="small">Geen spam, ooit. U kunt zich altijd uitschrijven met één klik.</p>
-        <div class="success-message hidden" id="success-msg">
-          ✓ Bedankt! Het rapport zit binnen 2 minuten in uw inbox.
+      <div class="breakdown">
+        <h3>Overzicht per gebied</h3>
+        <p class="intro">Zo scoort uw ouder op elk van de twaalf gebieden:</p>
+        <div id="breakdown-list"></div>
+        <div class="legend">
+          <span><span class="dot dot-good"></span> Goed</span>
+          <span><span class="dot dot-watch"></span> Aandachtspunt</span>
+          <span><span class="dot dot-risk"></span> Risico</span>
         </div>
-      </div>
-
-      <div class="cta-section">
-        <h3>Wilt u dit niet alleen uitzoeken?</h3>
-        <p>In een 30-minuten Zorg-Transitie gesprek bekijken we samen uw exacte situatie en maken we een concreet plan. Geen verkooppraatje — gewoon helderheid.</p>
-        <a href="#" class="btn btn-accent">Plan een gratis kennismaking →</a>
       </div>
     </div>
 
-    <p class="footer-note">
-      <a href="#" onclick="restart(); return false;" style="color: var(--primary);">↻ Doe de test opnieuw</a>
-    </p>
+    <div class="restart-wrap">
+      <p class="footer-note">
+        <a href="#" onclick="restart(); return false;" style="color: var(--primary);">↻ Doe de test opnieuw</a>
+      </p>
+    </div>
   </div>
 </div>
-
-<!-- Verborgen frame: vangt Brevo's antwoord op zodat de pagina niet herlaadt -->
-<iframe name="brevo_iframe" title="brevo" style="display:none"></iframe>
 
 <script>
   const questions = [
@@ -683,11 +620,9 @@
 
   function selectAnswer(idx) {
     answers[currentQuestion] = idx;
-    // visual feedback
     document.querySelectorAll('.option').forEach((el, i) => {
       el.classList.toggle('selected', i === idx);
     });
-    // auto-advance after small delay
     setTimeout(() => {
       if (currentQuestion < questions.length - 1) {
         currentQuestion++;
@@ -711,7 +646,7 @@
     document.getElementById('progress-fill').style.width = '100%';
     const score = answers.reduce((sum, idx, qi) => sum + questions[qi].options[idx].score, 0);
 
-    const resultScreen = document.getElementById('result-screen');
+    const resultScreen = document.querySelector('#result-screen .result-screen');
     const iconEl = document.getElementById('result-icon');
 
     let level, label, title, summaryTitle, summaryText, iconChar;
@@ -747,30 +682,31 @@
     document.getElementById('summary-title').textContent = summaryTitle;
     document.getElementById('summary-text').textContent = summaryText;
 
+    // Overzicht per gebied
+    const breakdownEl = document.getElementById('breakdown-list');
+    breakdownEl.innerHTML = '';
+    questions.forEach((q, qi) => {
+      const s = q.options[answers[qi]].score;
+      let cls, txt;
+      if (s <= 1) { cls = 'pill-good'; txt = 'Goed'; }
+      else if (s === 2) { cls = 'pill-watch'; txt = 'Aandachtspunt'; }
+      else { cls = 'pill-risk'; txt = 'Risico'; }
+      const row = document.createElement('div');
+      row.className = 'breakdown-row';
+      const cat = document.createElement('span');
+      cat.className = 'breakdown-cat';
+      cat.textContent = q.category;
+      const pill = document.createElement('span');
+      pill.className = 'breakdown-pill ' + cls;
+      pill.textContent = txt;
+      row.appendChild(cat);
+      row.appendChild(pill);
+      breakdownEl.appendChild(row);
+    });
+
     document.getElementById('quiz-screen').classList.add('hidden');
     document.getElementById('result-screen').classList.remove('hidden');
     window.scrollTo({ top: 0, behavior: 'smooth' });
-  }
-
-  function submitEmail(e) {
-    const form = e.target;
-    const score = answers.reduce((s, idx, qi) => s + questions[qi].options[idx].score, 0);
-    document.getElementById('hidden-score').value = score;
-
-    // Testmodus: zolang de Brevo-URL nog niet is ingevuld, niet echt versturen.
-    if (form.action.indexOf('PLAK-HIER') !== -1) {
-      e.preventDefault();
-      console.log('TESTMODUS — vul eerst je Brevo-URL in bij action="...". Gegevens:', {
-        name: document.getElementById('user-name').value,
-        email: document.getElementById('user-email').value,
-        score: score
-      });
-    }
-    // Anders verstuurt het formulier zichzelf naar Brevo via het verborgen frame.
-
-    document.getElementById('success-msg').classList.remove('hidden');
-    form.querySelector('button').textContent = '✓ Verstuurd';
-    form.querySelector('button').disabled = true;
   }
 
   function restart() {
@@ -778,9 +714,6 @@
     answers = new Array(questions.length).fill(null);
     document.getElementById('result-screen').classList.add('hidden');
     document.getElementById('intro-screen').classList.remove('hidden');
-    document.getElementById('success-msg').classList.add('hidden');
-    document.getElementById('user-name').value = '';
-    document.getElementById('user-email').value = '';
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 </script>
