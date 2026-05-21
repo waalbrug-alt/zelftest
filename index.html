@@ -592,7 +592,7 @@
     document.getElementById('intro-screen').classList.add('hidden');
     document.getElementById('quiz-screen').classList.remove('hidden');
     renderQuestion();
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    document.documentElement.scrollTop = 0; document.body.scrollTop = 0;
   }
 
   function renderQuestion() {
@@ -627,7 +627,7 @@
       if (currentQuestion < questions.length - 1) {
         currentQuestion++;
         renderQuestion();
-        window.scrollTo({ top: 0, behavior: 'smooth' });
+        document.documentElement.scrollTop = 0; document.body.scrollTop = 0;
       } else {
         showResult();
       }
@@ -638,12 +638,14 @@
     if (currentQuestion > 0) {
       currentQuestion--;
       renderQuestion();
-      window.scrollTo({ top: 0, behavior: 'smooth' });
+      document.documentElement.scrollTop = 0; document.body.scrollTop = 0;
     }
   }
 
   function showResult() {
     document.getElementById('progress-fill').style.width = '100%';
+
+    if (answers.some(a => a === null)) return;
     const score = answers.reduce((sum, idx, qi) => sum + questions[qi].options[idx].score, 0);
 
     const resultScreen = document.querySelector('#result-screen .result-screen');
@@ -706,7 +708,8 @@
 
     document.getElementById('quiz-screen').classList.add('hidden');
     document.getElementById('result-screen').classList.remove('hidden');
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    document.documentElement.scrollTop = 0;
+    document.body.scrollTop = 0;
   }
 
   function restart() {
@@ -714,7 +717,7 @@
     answers = new Array(questions.length).fill(null);
     document.getElementById('result-screen').classList.add('hidden');
     document.getElementById('intro-screen').classList.remove('hidden');
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    document.documentElement.scrollTop = 0; document.body.scrollTop = 0;
   }
 </script>
 </body>
